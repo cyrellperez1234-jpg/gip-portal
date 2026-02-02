@@ -1,0 +1,7 @@
+<button onclick="send()">Submit</button>
+
+<script>
+function send() {
+  fetch("https://script.google.com/macros/s/AKfycbys0bLY8G9OMsBHK53-5ssonRH98P8NOpj2F7eQn0e_/dev")
+}
+</script>
