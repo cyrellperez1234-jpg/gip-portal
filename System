@@ -1,7 +1,55 @@
-<button onclick="send()">Submit</button>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+      }
 
-<script>
-function send() {
-  fetch("https://script.google.com/macros/s/AKfycbys0bLY8G9OMsBHK53-5ssonRH98P8NOpj2F7eQn0e_/dev")
-}
-</script>
+      button {
+        border: 0;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem;
+        background: #2563eb;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="submit-btn" type="button">Submit</button>
+
+    <script>
+      const submitBtn = document.getElementById('submit-btn');
+
+      async function send() {
+        submitBtn.disabled = true;
+
+        try {
+          await fetch('https://script.google.com/macros/s/AKfycbys0bLY8G9OMsBHK53-5ssonRH98P8NOpj2F7eQn0e_/dev', {
+            method: 'GET',
+            mode: 'no-cors'
+          });
+        } finally {
+          submitBtn.disabled = false;
+        }
+      }
+
+      submitBtn.addEventListener('click', send);
+    </script>
+  </body>
+</html>
